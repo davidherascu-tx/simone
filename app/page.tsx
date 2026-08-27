@@ -103,16 +103,21 @@ export default function Home() {
       {/* ------------------------------------------------ Kennzahlen */}
       <div className="border-b border-line bg-surface">
         <Container width="wide">
-          <dl className="grid grid-cols-3 divide-x divide-line">
+          {/* Bis sm untereinander: Drei Spalten sind auf dem Handy zu schmal
+              für Wörter wie „Einrichtungserfahrung“. Dort stehen Zahl und
+              Bezeichnung nebeneinander auf einer Grundlinie. */}
+          <dl className="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {kennzahlen.map((item, index) => (
               <div
                 key={item.label}
-                className={`py-8 lg:py-10 ${index === 0 ? "pr-4 lg:pr-10" : "px-4 lg:px-10"}`}
+                className={`flex items-baseline gap-4 py-5 sm:block sm:py-8 lg:py-10 ${
+                  index === 0 ? "sm:pr-4 lg:pr-10" : "sm:px-4 lg:px-10"
+                }`}
               >
-                <dt className="font-display text-3xl font-semibold text-accent lg:text-4xl">
+                <dt className="font-display shrink-0 text-3xl font-semibold text-accent lg:text-4xl">
                   {item.value}
                 </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted">
+                <dd className="text-sm leading-relaxed text-muted sm:mt-2">
                   {item.label}
                 </dd>
               </div>
