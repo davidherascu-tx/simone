@@ -81,7 +81,7 @@ export default function Home() {
                 <span className="text-accent">Individuelle Planung.</span>
               </h1>
               <p className="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft">
-                Wir entwickeln für Sie eine kreative Lösung – budget- und
+                {site.name} entwickelt für Sie eine kreative Lösung, budget- und
                 termingerecht.
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -132,7 +132,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
             <SectionHeading
               eyebrow="Willkommen"
-              title="Sie können bei uns Büroeinrichtung bestellen. Sie können aber deutlich mehr bekommen."
+              title="Einrichten beginnt mit Planen."
             />
             <div className="space-y-5 lg:pt-16">
               <p className="text-lg leading-relaxed text-ink-soft">
@@ -205,7 +205,7 @@ export default function Home() {
             <div>
               <Eyebrow>Schnell lieferbar</Eyebrow>
               <h2 className="mt-5 text-3xl leading-[1.14] font-semibold text-ink sm:text-4xl">
-                In 7 Arbeitstagen arbeitsfähig
+                fastline – in 7–10 Werktagen lieferbar!
               </h2>
               <p className="mt-5 max-w-lg leading-relaxed text-ink-soft">
                 Tische, Schränke, Container und Stühle aus dem
@@ -345,7 +345,7 @@ export default function Home() {
       </div>
 
       <CtaBand
-        headline="Vereinbaren Sie einen Termin – und wir legen sofort los."
+        headline="Wir hören uns Ihr Projekt gern an."
         text="Ob ein Raum, ein Bereich oder ein ganzes Objekt: Schreiben Sie uns Ihren Terminwunsch oder Ihre Produktanfrage."
       />
     </>
