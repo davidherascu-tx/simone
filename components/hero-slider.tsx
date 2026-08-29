@@ -38,8 +38,23 @@ export function HeroSlider({
   const [paused, setPaused] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
 
+  /**
+   * Wie viele Bilder überhaupt im DOM stehen dürfen.
+   *
+   * Beim ersten Rendern nur zwei: das sichtbare (LCP-Element) und das nächste,
+   * damit die erste Überblendung nicht ins Leere läuft. Alle weiteren kommen
+   * erst dazu, wenn man sich ihnen nähert. Ohne das lädt der Browser alle vier
+   * Fotos gleichzeitig – die stecken im Viewport, `loading="lazy"` würde daran
+   * nichts ändern – und sie nehmen dem LCP-Bild die Bandbreite weg.
+   */
+  const [reach, setReach] = useState(1);
+
   const goTo = useCallback(
-    (next: number) => setIndex((next + slides.length) % slides.length),
+    (next: number) => {
+      const target = (next + slides.length) % slides.length;
+      setIndex(target);
+      setReach((current) => Math.max(current, target + 1));
+    },
     [slides.length],
   );
 
@@ -47,12 +62,9 @@ export function HeroSlider({
 
   useEffect(() => {
     if (!autoplay) return;
-    const timer = setTimeout(
-      () => setIndex((current) => (current + 1) % slides.length),
-      interval,
-    );
+    const timer = setTimeout(() => goTo(index + 1), interval);
     return () => clearTimeout(timer);
-  }, [autoplay, index, interval, slides.length]);
+  }, [autoplay, goTo, index, interval]);
 
   return (
     <div
@@ -72,20 +84,21 @@ export function HeroSlider({
               slideIndex === index ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Image
-              src={slide.src}
-              alt={slideIndex === index ? slide.alt : ""}
-              fill
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              {...(slideIndex === 0
-                ? // Erstes Bild ist das LCP-Element und wird vorgeladen.
-                  { preload: true }
-                : // Die übrigen früh, aber mit niedriger Priorität holen, damit
-                  // beim ersten Überblenden nichts fehlt und das LCP-Bild
-                  // trotzdem Vorrang behält.
-                  { loading: "eager" as const, fetchPriority: "low" as const })}
-              className="object-cover"
-            />
+            {slideIndex <= reach ? (
+              <Image
+                src={slide.src}
+                alt={slideIndex === index ? slide.alt : ""}
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                {...(slideIndex === 0
+                  ? // Erstes Bild ist das LCP-Element und wird vorgeladen.
+                    { preload: true }
+                  : // Das jeweils nächste Bild im Hintergrund holen, damit das
+                    // LCP-Bild Vorrang behält.
+                    { fetchPriority: "low" as const })}
+                className="object-cover"
+              />
+            ) : null}
           </div>
         ))}
       </div>

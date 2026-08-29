@@ -45,10 +45,24 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} – ${site.tagline}`,
+    description: site.description,
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  ...(site.googleSiteVerification
+    ? { verification: { google: site.googleSiteVerification } }
+    : {}),
 };
 
 export default function RootLayout({

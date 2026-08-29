@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
+import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
 import {
   ArrowLink,
@@ -17,6 +18,7 @@ import {
   type LeistungBlock,
 } from "@/lib/leistungen";
 import { buildMetadata } from "@/lib/metadata";
+import { serviceSchema } from "@/lib/schema";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -141,6 +143,14 @@ export default async function LeistungPage({ params }: Params) {
 
   return (
     <>
+      <JsonLd
+        data={serviceSchema({
+          name: leistung.title,
+          description: leistung.teaser,
+          path: `/leistungen/${leistung.slug}`,
+        })}
+      />
+
       <PageHero
         eyebrow={leistung.eyebrow}
         title={leistung.title}

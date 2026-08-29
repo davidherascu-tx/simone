@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { PageHero } from "@/components/page-hero";
 import { Container, Section } from "@/components/ui";
 import { buildMetadata } from "@/lib/metadata";
@@ -11,13 +10,6 @@ export const metadata: Metadata = buildMetadata({
   path: "/impressum",
   noIndex: true,
 });
-
-/** Markiert Angaben, die vor dem Livegang noch ergänzt werden müssen. */
-function Todo({ children }: { children: ReactNode }) {
-  return (
-    <span className="bg-[#fdf3d7] px-1.5 py-0.5 text-ink">[{children}]</span>
-  );
-}
 
 export default function ImpressumPage() {
   return (
@@ -35,13 +27,6 @@ export default function ImpressumPage() {
 
       <Section>
         <Container width="narrow">
-          <div className="mb-12 rounded-xl border-l-2 border-accent bg-accent-soft p-7 text-sm leading-relaxed text-ink-soft">
-            <strong className="font-semibold text-ink">Hinweis:</strong> Dieser
-            Text ist eine sorgfältig erstellte Vorlage und ersetzt keine
-            Rechtsberatung. Bitte prüfen Sie ihn vor der Veröffentlichung und
-            ergänzen Sie die gelb markierten Angaben.
-          </div>
-
           <div className="legal-prose">
             <h2>Diensteanbieter</h2>
             <p>
@@ -68,45 +53,56 @@ export default function ImpressumPage() {
             <h2>Umsatzsteuer-Identifikationsnummer</h2>
             <p>
               Umsatzsteuer-Identifikationsnummer gemäß § 27 a
-              Umsatzsteuergesetz: <Todo>USt-IdNr. ergänzen</Todo>
+              Umsatzsteuergesetz: {site.legal.vatId}
+              <br />
+              Steuernummer: {site.legal.taxNumber}
             </p>
 
             <h2>Berufsrechtliche Angaben</h2>
             <p>
-              <strong>Berufsbezeichnung:</strong> Architektin (verliehen in der
-              Bundesrepublik Deutschland)
+              <strong>Berufsbezeichnung:</strong> {site.legal.professionalTitle}{" "}
+              (verliehen in der Bundesrepublik Deutschland)
             </p>
             <p>
-              <strong>Zuständige Kammer:</strong>{" "}
-              <Todo>
-                zuständige Architektenkammer mit Anschrift und Website ergänzen,
-                z. B. Brandenburgische Architektenkammer
-              </Todo>
+              <strong>Zuständige Kammer:</strong>
+              <br />
+              {site.legal.chamber.name}
+              <br />
+              {site.legal.chamber.street}
+              <br />
+              {site.legal.chamber.zip} {site.legal.chamber.city}
             </p>
             <p>
               <strong>Eintragungsnummer:</strong>{" "}
-              <Todo>Kammer-Eintragungsnummer ergänzen</Todo>
+              {site.legal.chamber.registrationNumber}
             </p>
             <p>
               <strong>Berufsrechtliche Regelungen:</strong> Es gelten
-              insbesondere das Architekten- und Ingenieurgesetz des zuständigen
-              Bundeslandes sowie die Berufsordnung und die Satzungen der
-              zuständigen Architektenkammer.{" "}
-              <Todo>
-                Fundstelle bzw. Link zu den einschlägigen Regelungen ergänzen
-              </Todo>
+              insbesondere das Architekten- und Ingenieurgesetz des Landes
+              Brandenburg sowie die Berufsordnung und die Satzungen der
+              Brandenburgischen Architektenkammer. Diese Regelungen sind bei der
+              Brandenburgischen Architektenkammer (Anschrift siehe oben) sowie
+              auf deren Website einsehbar.
             </p>
 
             <h2>Berufshaftpflichtversicherung</h2>
             <p>
               Angaben gemäß § 2 Abs. 1 Nr. 11 Dienstleistungs-Informationspflichten-Verordnung
               (DL-InfoV):
+            </p>
+            <p>
+              {site.legal.insurance.name}
               <br />
-              Name und Anschrift des Versicherers:{" "}
-              <Todo>Versicherer und Anschrift ergänzen</Todo>
+              {site.legal.insurance.street}
               <br />
-              Räumlicher Geltungsbereich:{" "}
-              <Todo>Geltungsbereich ergänzen, z. B. Deutschland / EU</Todo>
+              {site.legal.insurance.zip} {site.legal.insurance.city}
+            </p>
+            <p>
+              Umfang: {site.legal.insurance.scope}
+              <br />
+              Versicherungsschein-Nummer: {site.legal.insurance.policyNumber}
+              <br />
+              Räumlicher Geltungsbereich: {site.legal.insurance.territory}
             </p>
 
             <h2>Redaktionell verantwortlich</h2>
@@ -182,17 +178,11 @@ export default function ImpressumPage() {
             <h2>Bildnachweise</h2>
             <p>
               Produkt- und Objektabbildungen wurden uns freundlicherweise von
-              unseren Herstellerpartnern zur Verfügung gestellt. Alle Marken-
-              und Produktnamen sowie Logos sind Eigentum der jeweiligen
+              unseren Herstellerpartnern fm Büromöbel, Febrü, C+P
+              Möbelsysteme, LD Seating und Profim zur Verfügung gestellt und
+              werden mit deren Genehmigung verwendet. Alle Marken- und
+              Produktnamen sowie Logos sind Eigentum der jeweiligen
               Rechteinhaber.
-            </p>
-            <p>
-              <Todo>
-                Konkrete Bildnachweise und Lizenzen ergänzen, z. B. fm Büromöbel
-                GmbH &amp; Co. KG, Febrü Büromöbel GmbH &amp; Co. KG, C+P
-                Möbelsysteme GmbH &amp; Co. KG, LD Seating a.s., Profim sowie
-                genutzte Stockfoto-Quellen
-              </Todo>
             </p>
           </div>
         </Container>

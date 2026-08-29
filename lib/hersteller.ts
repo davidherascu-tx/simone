@@ -24,7 +24,6 @@ export const hersteller: Hersteller[] = [
     slug: "fm-bueromoebel",
     name: "fm Büromöbel",
     country: "Deutschland",
-    badge: "Unsere Werksausstellung in Berlin-Schönefeld",
     logo: "/fm_logo_bueromoebel.webp",
     logoWidth: 827,
     logoHeight: 346,

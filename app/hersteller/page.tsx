@@ -63,7 +63,7 @@ export default function HerstellerPage() {
           <SectionHeading
             eyebrow="Ein Ansprechpartner"
             title="Wir stellen Ihr Gesamtensemble zusammen"
-            lead="Gern auch gleich in der fm Büromöbel Werksausstellung in Berlin-Schönefeld. Wenn Sie sich einen erfahrenen Einrichtungspartner wünschen, der Sie berät, für Sie plant und Ihnen den Ablauf bis zur Übergabe so leicht wie möglich macht, nehmen Sie Kontakt zu uns auf. Wir freuen uns auf Sie."
+            lead="Wenn Sie sich einen erfahrenen Einrichtungspartner wünschen, der Sie berät, für Sie plant und Ihnen den Ablauf bis zur Übergabe so leicht wie möglich macht, nehmen Sie Kontakt zu uns auf. Wir freuen uns auf Sie."
           />
 
           <div className="mt-20 space-y-24 lg:space-y-32">
@@ -136,7 +136,7 @@ export default function HerstellerPage() {
 
       <CtaBand
         headline="Etwas Interessantes entdeckt?"
-        text="Lassen Sie sich ein Angebot erstellen oder vereinbaren Sie gleich einen Termin in unserer Ausstellung."
+        text="Lassen Sie sich ein Angebot erstellen oder vereinbaren Sie gleich einen persönlichen Beratungstermin."
         label="Angebot anfragen"
         href={`/kontakt?thema=${encodeURIComponent("Angebot / Produktanfrage")}`}
       />

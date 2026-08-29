@@ -3,7 +3,10 @@ import { leistungen } from "@/lib/leistungen";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  // Bewusst ein fester Wert statt `new Date()`: Sonst meldet jeder Deploy
+  // sämtliche Seiten als geändert, und die Angabe verliert für Suchmaschinen
+  // ihren Wert. Bei inhaltlichen Änderungen `contentUpdated` in site.ts pflegen.
+  const lastModified = new Date(site.contentUpdated);
 
   const statisch: MetadataRoute.Sitemap = [
     { url: site.url, priority: 1, changeFrequency: "monthly" },

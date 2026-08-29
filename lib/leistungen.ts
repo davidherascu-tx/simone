@@ -201,13 +201,6 @@ export const leistungen: Leistung[] = [
         outro:
           "Bei größeren Stückzahlen auch Einzelstühle – bis hin zur Bemusterung eines kompletten Bereiches mit Büro- und Sitzmöbeln.",
       },
-      {
-        kind: "highlight",
-        title: "Oder gleich in unsere Ausstellung",
-        items: [
-          "Lernen Sie unsere Produkte live kennen, setzen Sie sich probe und nehmen Sie am Ende des Gesprächs gleich Muster und Prospekte mit.",
-        ],
-      },
     ],
     cta: {
       headline: "Gute Idee – ich möchte einen Termin vereinbaren.",

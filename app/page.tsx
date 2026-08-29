@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
 import { HeroSlider, type Slide } from "@/components/hero-slider";
+import { JsonLd } from "@/components/json-ld";
 import {
   ArrowLink,
   ArrowRight,
@@ -16,12 +17,13 @@ import { hersteller } from "@/lib/hersteller";
 import { leistungen } from "@/lib/leistungen";
 import { buildMetadata } from "@/lib/metadata";
 import { referenzen } from "@/lib/referenzen";
+import { localBusinessSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   description: site.description,
   path: "/",
-  image: "/slide_1.webp",
+  // Ohne `image` greift das gestaltete Vorschaubild aus app/opengraph-image.tsx.
 });
 
 const slides: Slide[] = [
@@ -59,7 +61,7 @@ const dekore = [
 
 const argumente = [
   `${site.yearsOfExperience} Jahre Einrichtungserfahrung in den unterschiedlichsten Branchen`,
-  "Persönliche Beratung bei Ihnen vor Ort und in unserer Ausstellung",
+  "Persönliche Beratung bei Ihnen vor Ort",
   "Raumplanungen von unserer Architektin – nach allen gesetzlichen Vorgaben",
   "Fünf Hersteller mit einem exzellenten Preis-/Leistungsverhältnis",
   "Aufmaß, Logistik und Montage bis zur gebrauchsfertigen Übergabe",
@@ -69,6 +71,9 @@ const argumente = [
 export default function Home() {
   return (
     <>
+      <JsonLd data={localBusinessSchema} />
+      <JsonLd data={websiteSchema} />
+
       {/* ------------------------------------------------------ Hero */}
       <section className="border-b border-line bg-surface">
         <Container width="wide" className="py-12 lg:py-20">
@@ -297,7 +302,7 @@ export default function Home() {
             */}
             <div aria-hidden="true" className="hidden lg:block">
               <Image
-                src="/chair.png"
+                src="/chair.webp"
                 alt=""
                 width={230}
                 height={375}

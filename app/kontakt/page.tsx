@@ -102,15 +102,6 @@ export default function KontaktPage() {
                   {site.contact.roleDetail}
                 </p>
               </div>
-
-              <div className="mt-12">
-                <Eyebrow>Ausstellung</Eyebrow>
-                <p className="mt-5 leading-relaxed text-ink-soft">
-                  Lernen Sie unsere Produkte live kennen – in der fm Büromöbel
-                  Werksausstellung in Berlin-Schönefeld. Bitte vereinbaren Sie
-                  vorab einen Termin, damit wir uns Zeit für Sie nehmen können.
-                </p>
-              </div>
             </div>
 
             {/* Formular */}

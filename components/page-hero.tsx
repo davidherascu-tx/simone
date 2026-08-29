@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { JsonLd } from "@/components/json-ld";
 import { Eyebrow } from "@/components/ui";
+import { breadcrumbSchema } from "@/lib/schema";
 
 type Crumb = { href: string; label: string };
 
@@ -62,6 +64,10 @@ export function PageHero({
 
   return (
     <div className={styles.wrapper}>
+      {breadcrumbs?.length ? (
+        <JsonLd data={breadcrumbSchema(breadcrumbs)} />
+      ) : null}
+
       <div
         className={`mx-auto grid w-full max-w-[88rem] items-center gap-12 px-6 pt-14 pb-16 sm:px-8 lg:gap-16 lg:px-12 lg:pt-20 lg:pb-24 ${
           twoColumn ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]" : ""

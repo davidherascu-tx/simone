@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { PageHero } from "@/components/page-hero";
 import { Container, Section } from "@/components/ui";
 import { buildMetadata } from "@/lib/metadata";
@@ -12,13 +11,6 @@ export const metadata: Metadata = buildMetadata({
   path: "/datenschutz",
   noIndex: true,
 });
-
-/** Markiert Angaben, die vor dem Livegang noch ergänzt werden müssen. */
-function Todo({ children }: { children: ReactNode }) {
-  return (
-    <span className="bg-[#fdf3d7] px-1.5 py-0.5 text-ink">[{children}]</span>
-  );
-}
 
 export default function DatenschutzPage() {
   return (
@@ -36,16 +28,6 @@ export default function DatenschutzPage() {
 
       <Section>
         <Container width="narrow">
-          <div className="mb-12 rounded-xl border-l-2 border-accent bg-accent-soft p-7 text-sm leading-relaxed text-ink-soft">
-            <strong className="font-semibold text-ink">Hinweis:</strong> Dieser
-            Text ist eine sorgfältig erstellte Vorlage, die den aktuellen
-            Funktionsumfang dieser Website beschreibt. Er ersetzt keine
-            Rechtsberatung. Bitte prüfen Sie ihn vor der Veröffentlichung,
-            ergänzen Sie die gelb markierten Angaben und passen Sie ihn an,
-            sobald weitere Dienste (z. B. Analyse, Karten, Newsletter)
-            eingebunden werden.
-          </div>
-
           <div className="legal-prose">
             <h2>1. Verantwortliche Stelle</h2>
             <p>
@@ -89,12 +71,36 @@ export default function DatenschutzPage() {
             </p>
 
             <h2>3. Hosting und Server-Logfiles</h2>
+            <h3>3.1 Hosting durch Netlify</h3>
             <p>
-              Diese Website wird bei einem externen Dienstleister gehostet:{" "}
-              <Todo>
-                Name und Anschrift des Hosting-Anbieters ergänzen; Vertrag über
-                Auftragsverarbeitung nach Art. 28 DSGVO abschließen
-              </Todo>
+              Diese Website wird von folgendem Dienstleister gehostet und
+              ausgeliefert:
+            </p>
+            <p>
+              Netlify, Inc., San Francisco (Kalifornien), USA
+              <br />
+              <a
+                href="https://www.netlify.com/privacy/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                www.netlify.com/privacy
+              </a>
+            </p>
+            <p>
+              Netlify verarbeitet die beim Aufruf der Website anfallenden Daten
+              ausschließlich in unserem Auftrag und nach unseren Weisungen.
+              Grundlage ist ein Vertrag über Auftragsverarbeitung nach Art. 28
+              DSGVO.
+            </p>
+            <p>
+              <strong>Übermittlung in die USA:</strong> Netlify ist ein
+              US-Unternehmen und betreibt ein weltweites
+              Content-Delivery-Netzwerk. Dabei können personenbezogene Daten –
+              insbesondere Ihre IP-Adresse – in die USA übermittelt werden. Die
+              Übermittlung stützt sich auf die von der EU-Kommission erlassenen
+              Standardvertragsklauseln nach Art. 46 Abs. 2 lit. c DSGVO, die
+              Bestandteil des Auftragsverarbeitungsvertrags sind.
             </p>
             <p>
               Beim Aufruf der Website erhebt der Hosting-Anbieter automatisch
@@ -107,7 +113,7 @@ export default function DatenschutzPage() {
               <li>übertragene Datenmenge</li>
               <li>Browsertyp, Browserversion und verwendetes Betriebssystem</li>
               <li>Referrer-URL (die zuvor besuchte Seite)</li>
-              <li>IP-Adresse in gekürzter bzw. anonymisierter Form</li>
+              <li>IP-Adresse des anfragenden Endgeräts</li>
             </ul>
             <p>
               Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.
@@ -117,11 +123,22 @@ export default function DatenschutzPage() {
               unserer Website.
             </p>
             <p>
-              Speicherdauer:{" "}
-              <Todo>
-                tatsächliche Speicherdauer der Logfiles beim Hoster ergänzen,
-                üblich sind 7 bis 30 Tage
-              </Todo>
+              Speicherdauer: Die Logfiles werden automatisch gelöscht, sobald
+              sie für die genannten Zwecke nicht mehr erforderlich sind.
+            </p>
+
+            <h3>3.2 Quellcode-Verwaltung bei GitHub</h3>
+            <p>
+              Der Quellcode dieser Website wird in einem Repository bei GitHub,
+              Inc. (Microsoft-Konzern) verwaltet. GitHub dient ausschließlich
+              der Versionsverwaltung und dem Anstoßen des automatischen
+              Bau- und Veröffentlichungsvorgangs bei Netlify.
+            </p>
+            <p>
+              Beim Besuch dieser Website werden{" "}
+              <strong>keine Daten an GitHub übermittelt</strong>. Ihr Browser
+              baut keine Verbindung zu GitHub auf; die Auslieferung der Seite
+              erfolgt vollständig über Netlify.
             </p>
 
             <h2>4. Kontaktaufnahme</h2>
