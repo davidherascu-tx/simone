@@ -2,10 +2,23 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 /**
- * Bildmarke: ein Grundriss.
- * Der Raum als Umriss mit Türöffnung und Türschlag – darin das "M" für März.
+ * Bildmarke: zwei Winkel fassen einen Raum, ohne ihn zu schließen – die beiden
+ * offenen Ecken sind die Öffnung. In der Mitte steht das „M“ für März.
+ *
+ * Die Winkel stehen in Petrolblau, das Monogramm in Tiefblau: so bleibt die
+ * Hierarchie auch bei kleiner Darstellung lesbar.
  */
-export function LogoMark({ className = "" }: { className?: string }) {
+export function LogoMark({
+  tone = "dark",
+  className = "",
+}: {
+  tone?: "dark" | "light";
+  className?: string;
+}) {
+  const isLight = tone === "light";
+  const rahmen = isLight ? "text-white/65" : "text-accent";
+  const monogramm = isLight ? "text-white" : "text-accent-dark";
+
   return (
     <svg
       viewBox="0 0 64 64"
@@ -13,27 +26,32 @@ export function LogoMark({ className = "" }: { className?: string }) {
       aria-hidden="true"
       className={className}
     >
-      {/* Raumumriss mit Öffnung an der Unterkante */}
+      {/* Winkel oben links */}
       <path
-        d="M28 58H6V6h52v52H40"
+        d="M6 40V6h34"
+        className={rahmen}
         stroke="currentColor"
-        strokeWidth={3.5}
-        strokeLinecap="square"
+        strokeWidth={5}
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
       />
-      {/* Türschlag */}
+      {/* Winkel unten rechts */}
       <path
-        d="M40 46a12 12 0 0 1-12 12"
+        d="M24 58h34V24"
+        className={rahmen}
         stroke="currentColor"
-        strokeWidth={2}
-        opacity={0.55}
+        strokeWidth={5}
+        strokeLinecap="butt"
+        strokeLinejoin="miter"
       />
       {/* Monogramm M */}
       <path
-        d="M16 41V18l16 14 16-14v23"
+        d="M20 43V22l12 11 12-11v21"
+        className={monogramm}
         stroke="currentColor"
-        strokeWidth={3.5}
+        strokeWidth={5.5}
+        strokeLinecap="butt"
         strokeLinejoin="miter"
-        strokeLinecap="square"
       />
     </svg>
   );
@@ -56,26 +74,23 @@ export function Logo({
     <Link
       href="/"
       aria-label={`${site.name} – zur Startseite`}
-      className={`group inline-flex items-center gap-3 ${className}`}
+      className={`group inline-flex items-center gap-3.5 ${className}`}
     >
       <LogoMark
-        className={`h-9 w-9 shrink-0 transition-colors ${
-          isLight
-            ? "text-white/90 group-hover:text-white"
-            : "text-accent group-hover:text-accent-dark"
-        }`}
+        tone={tone}
+        className="h-9 w-9 shrink-0 transition-opacity group-hover:opacity-75"
       />
       <span className="flex flex-col leading-none">
         <span
-          className={`font-display text-[0.95rem] font-semibold tracking-[0.14em] uppercase ${
+          className={`font-display text-[0.98rem] font-semibold tracking-[0.13em] uppercase ${
             isLight ? "text-white" : "text-ink"
           }`}
         >
           Simone März
         </span>
         <span
-          className={`mt-1 text-[0.6rem] tracking-[0.26em] uppercase ${
-            isLight ? "text-white/60" : "text-muted"
+          className={`mt-1.5 text-[0.58rem] font-medium tracking-[0.3em] uppercase ${
+            isLight ? "text-white/55" : "text-muted"
           }`}
         >
           Objekteinrichtungen

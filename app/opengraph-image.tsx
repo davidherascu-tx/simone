@@ -27,16 +27,28 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            fontSize: 26,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "#8fc4de",
-          }}
-        >
-          Büro- und Objekteinrichtung
+        <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
+          {/* Bildmarke – bewusst als Pfade, damit kein Bild geladen werden muss */}
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none">
+            <path d="M6 40V6h34" stroke="#8fc4de" strokeWidth={5} />
+            <path d="M24 58h34V24" stroke="#8fc4de" strokeWidth={5} />
+            <path
+              d="M20 43V22l12 11 12-11v21"
+              stroke="#ffffff"
+              strokeWidth={5.5}
+            />
+          </svg>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 26,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "#8fc4de",
+            }}
+          >
+            Büro- und Objekteinrichtung
+          </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
